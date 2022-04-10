@@ -6,6 +6,8 @@
     justify-content: space-between;
     padding-left: 140px;
     padding-right: 140px;
+    position: sticky;
+    top:0;
 }
 
 .header a{
