@@ -13,8 +13,13 @@
  *
  * Attach form fill handler or form submit handler
  *
+ *npm install --save react-firebase-hooks
  *
+ * useCreateUserWithEmailAndPassword from react firebase hooks
  *
+ *if user create an account then redirect the expected page
+ 
+ *signInWithEmailAndPassword for sign in
  */
 
 /**

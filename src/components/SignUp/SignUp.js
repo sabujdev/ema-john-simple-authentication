@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+
+  const [createUserWithEmailAndPassword, user] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/");
+  }
 
   //function Email_blur
   const handleEmailBlur = (event) => {
@@ -26,6 +37,11 @@ const SignUp = () => {
       setError("Your password not match");
       return;
     }
+    if (password.length < 6) {
+      setError("Password must be 6 character or longer");
+      return;
+    }
+    createUserWithEmailAndPassword(email, password);
   };
 
   return (
@@ -63,6 +79,7 @@ const SignUp = () => {
           <input className="form_submit" type="submit" value="Sign Up" />
         </form>
         <p style={{ color: "red", fontSize: "22px" }}>{error}</p>
+
         <div>
           <p>
             Already have an account?
