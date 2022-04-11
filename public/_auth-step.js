@@ -9,6 +9,9 @@
  *
  *Firebase settings >Authentication > Email & Password auth
  *
+ * login , signUp, component setup route
+ *
+ * Attach form fill handler or form submit handler
  *
  *
  *

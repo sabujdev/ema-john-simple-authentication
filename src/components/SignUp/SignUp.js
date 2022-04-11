@@ -2,26 +2,67 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const {} = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  //function Email_blur
+  const handleEmailBlur = (event) => {
+    setEmail(event.target.value);
+  };
+  //function for password Blur
+  const handlePasswordBlur = (event) => {
+    setPassword(event.target.value);
+  };
+  // function for confirmPassword Blur
+  const handleConfirmPasswordBlur = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+  // function for create new user
+  const handleCreateUser = (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Your password not match");
+      return;
+    }
+  };
+
   return (
     <div className="form_container">
       <div>
         <h1 className="form_title">Sign Up</h1>
-        <form>
+        <form onSubmit={handleCreateUser}>
           <div className="input_group">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" required />
+            <input
+              onBlur={handleEmailBlur}
+              type="email"
+              name="email"
+              required
+            />
           </div>
           <div className="input_group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" required />
+            <input
+              onBlur={handlePasswordBlur}
+              type="password"
+              name="password"
+              required
+            />
           </div>
           <div className="input_group">
             <label htmlFor="confirm-password">Confirm Password</label>
-            <input type="confirm-password" name="password" required />
+            <input
+              onBlur={handleConfirmPasswordBlur}
+              type="password"
+              name="confirm-password"
+              required
+            />
           </div>
           <input className="form_submit" type="submit" value="Sign Up" />
         </form>
+        <p style={{ color: "red", fontSize: "22px" }}>{error}</p>
         <div>
           <p>
             Already have an account?
